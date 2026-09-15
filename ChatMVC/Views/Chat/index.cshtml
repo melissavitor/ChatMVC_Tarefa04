@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Entrar no Chat";
+}
+
+<h2>Entrar no Chat</h2>
+
+<form asp-controller="Chat" asp-action="Enter" method="post">
+    <div class="mb-3">
+        <label for="userName">Seu nome</label>
+        <input type="text" name="userName" id="userName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="roomName">Sala</label>
+        <input type="text" name="roomName" id="roomName" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
