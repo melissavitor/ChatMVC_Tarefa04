@@ -1,0 +1,33 @@
+@model ChatMVC.Models.ChatViewModel
+
+@{
+    ViewData["Title"] = "Sala: " + Model.RoomName;
+}
+
+<h2>Sala: @Model.RoomName</h2>
+<p>Você está logado como: <strong>@Model.UserName</strong></p>
+
+<div class="chat-box border rounded p-3 mb-3" style="height: 400px; overflow-y: auto;">
+    @foreach (var msg in Model.Messages)
+    {
+        <div class="mb-2">
+            <strong>@msg.UserName</strong>
+            <small class="text-muted">(@msg.SentAt.ToString("HH:mm"))</small>
+            <p class="mb-0">@msg.Text</p>
+        </div>
+    }
+</div>
+
+<form asp-controller="Chat" asp-action="SendMessage" method="post">
+    <input type="hidden" name="UserName" value="@Model.UserName" />
+    <input type="hidden" name="RoomName" value="@Model.RoomName" />
+
+    <div class="input-group">
+        <input type="text" name="MessageText" class="form-control" placeholder="Digite sua mensagem..." required />
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/js/chat.js"></script>
+}
